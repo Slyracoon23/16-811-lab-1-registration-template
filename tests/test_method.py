@@ -63,3 +63,28 @@ def test_survives_ninety_percent_outliers():
     p, q, rotation, _ = make_pair(n=500, outlier_fraction=0.9, noise=0.005, seed=4)
     estimated_r, _ = register(p, q, prune="consistency")
     assert rotation_error_deg(estimated_r, rotation) < 5.0
+
+
+# Below here the data is two partial views of an object rather than a ball of noise: overlapping
+# only where both cameras can see, lying on surfaces, and mismatched onto other parts of the same
+# object. This is the case the lab is actually about.
+def test_registers_two_partial_views_of_an_object():
+    """Step 3. Real geometry, no outliers yet. Noise is 2mm, so the tolerance is not machine epsilon."""
+    import scene
+
+    source, target, rotation, _, _ = scene.view_pair(outlier_fraction=0.0, seed=0)
+    estimated, _ = register(source, target)
+    assert rotation_error_deg(estimated, rotation) < 0.5
+
+
+def test_the_closed_form_breaks_before_ninety_percent_outliers():
+    """Step 4. The lab's premise, stated as a test.
+
+    Least squares has no defence against a wrong correspondence, so this *should* fail badly. If it
+    does not, your outliers are not outliers — check `scene.view_pair` before celebrating.
+    """
+    import scene
+
+    source, target, rotation, _, _ = scene.view_pair(outlier_fraction=0.9, seed=1)
+    estimated, _ = register(source, target)
+    assert rotation_error_deg(estimated, rotation) > 20.0, "plain least squares survived 90% outliers?"
