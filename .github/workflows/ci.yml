@@ -1,0 +1,22 @@
+name: ci
+
+# The scaffold pins against libraries that move. A weekly build is the only thing that answers
+# "does this still work today" rather than "did it work when it was written".
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1"
+
+jobs:
+  devcontainer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the devcontainer and run the tests inside it
+        uses: devcontainers/ci@v0.3
+        with:
+          push: never
+          runCmd: |
+            python evaluate.py --self-test
+            pytest -q

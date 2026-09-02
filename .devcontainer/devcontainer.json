@@ -1,0 +1,11 @@
+{
+  "name": "16-811 lab 1 · registration",
+  "build": { "dockerfile": "Dockerfile" },
+  "postCreateCommand": "pip install -e '.[dev]'",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "charliermarsh.ruff"],
+      "settings": { "python.testing.pytestEnabled": true }
+    }
+  }
+}

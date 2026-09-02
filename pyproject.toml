@@ -1,0 +1,14 @@
+[project]
+name = "lab-registration"
+version = "0.1.0"
+description = "Horn's closed-form point-cloud registration, and what outliers do to it"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26", "scipy>=1.11", "matplotlib>=3.8"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+viz = ["open3d>=0.18"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
