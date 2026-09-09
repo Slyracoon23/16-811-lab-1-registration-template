@@ -17,7 +17,7 @@ Open in the dev container — everything is installed — then:
 ```bash
 make check        # 10 tests. 5 fail. Those 5 are the job.
 make reproduce    # runs now, with a deliberately wrong method. Beat that number.
-python view.py --outliers 0.6 && rerun registration.rrd   # watch it happen
+python3 view.py --outliers 0.6 && rerun registration.rrd   # watch it happen
 ```
 
 Nothing here raises `NotImplementedError`. `method.py` ships something that runs and is wrong:
@@ -58,7 +58,7 @@ reflection? Did your inlier set keep the wrong half of the object? Did the two v
 All three read as "4.3 degrees" in a table and are obvious in three seconds on screen.
 
 ```bash
-python view.py --outliers 0.6 --save run.rrd
+python3 view.py --outliers 0.6 --save run.rrd
 rerun run.rrd
 ```
 
