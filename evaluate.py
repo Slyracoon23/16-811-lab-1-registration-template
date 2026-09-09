@@ -1,7 +1,7 @@
 """The ruler. Complete, and it does not import `method`.
 
 An evaluator that has seen the answer cannot be trusted with it, so this file knows nothing about
-how the transform was produced. Build confidence in the ruler first: `python evaluate.py --self-test`
+how the transform was produced. Build confidence in the ruler first: `python3 evaluate.py --self-test`
 scores a deliberately useless answer and a perfect one, and both must land where you predict.
 """
 

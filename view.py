@@ -9,7 +9,7 @@ Rerun is what robotics teams reach for here. It logs from Python, it needs no se
 a `.rrd` file you can open later or hand to somebody else — which is why the failure that took an
 afternoon in a terminal becomes a screenshot in a pull request.
 
-    python view.py --outliers 0.6 --save run.rrd     # then: rerun run.rrd
+    python3 view.py --outliers 0.6 --save run.rrd     # then: rerun run.rrd
 
 Two stages on a "stage" timeline: the raw correspondences, then the same pair with your estimate
 applied. Scrub between them and a bad rotation is unmistakable.
